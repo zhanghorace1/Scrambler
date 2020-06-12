@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scrambler</title>
+
+  <style type="text/css">
+    .h1{
+      font-family: Helvetica;
+      font-size: 55px;
+      text-align: center;
+    }
+    .input{
+      width: 300px;  
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+
+    }
+    .button{
+      display: block;
+      margin: 0 auto;
+    }
+    .p{
+      font-family: Helvetica;
+      width: 500px;
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      background-color: white;
+
+    }
+    body{
+      background-image: url("https://www.wpfaster.org/wp-content/uploads/2013/06/Questionmark-Background-1.jpg");
+      display: block;
+      margin: 0 auto;
+    }
+
+  </style>
+
+<body>
+  <h1 class="h1">Scrambler</h1>
+      <form>
+   
+        <input class="input" type="text" id="input" placeholder="Make the know unknown, and the unknown known">
+        <div>
+          <br>
+          <button class="button" type="button" onclick="scrambler()">Scramble/Unscramble</button>
+        </div>
+      </form>
+      <div>
+        <br>
+        <p class="p" id="output"></p>
+      </div>
+      <div>
+        <button class="button" id="copy" onclick="copyFunc()" >Copy</button>
+      </div>
+      
+
+</body>
+  <script type="text/javascript">
+
+    function scrambler(){
+      let input = document.getElementById("input").value;
+
+      let dictionary ={
+          a:"z",
+          b:"y",
+          c:"x",
+          d:"w",
+          e:"v",
+          f:"u",
+          g:"t",
+          h:"s",
+          i:"r",
+          j:"q",
+          k:"p",
+          l:"o",
+          m:"n",
+          n:"m",
+          o:"l",
+          p:"k",
+          q:"j",
+          r:"i",
+          s:"h",
+          t:"g",
+          u:"f",
+          v:"e",
+          w:"d",
+          x:"c",
+          y:"b",
+          z:"a",
+          " ": " ",
+          ".": ".",
+          ",": ",",
+          "!": "?",
+          "?": "!",
+          "\"": "\"",
+          1:0,
+          2:9,
+          3:8,
+          4:7,
+          5:6,
+          6:5,
+          7:4,
+          8:3,
+          9:2,
+          0:1
+        }
+
+        input = input.toLowerCase()
+        let output =""
+
+        
+        for (var i = 0; i < input.length; i++) {
+          let currentLetter = input[i];
+          if (currentLetter in dictionary){
+            output += dictionary[currentLetter]
+          }
+        }
+      document.getElementById("output").innerHTML = output;
+    }
+
+    
+    function copyFunc(){
+      var range = document.createRange();
+      range.selectNode(document.getElementById("output"));
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+    }
+
+  </script>
+</html>
